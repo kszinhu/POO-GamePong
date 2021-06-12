@@ -1,31 +1,52 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class Player {
+public class Player extends JPanel {
 
   private int x, y;
   private int dx, dy;
-  private Image image;
+  private Image Girl[] = new Image[3];
+  // private Image Boy[] = new Image[3];
+  private List<Shooting> shoots;
   private int height, width;
+
+  int moveStatus = 0;
 
   public Player() {
     this.x = 100;
-    this.y = 100;
-  }
+    this.y = 448;
 
-  public void load() {
-    ImageIcon referrence = new ImageIcon("res\\images\\player.png");
-    image = referrence.getImage();
-
-    height = image.getHeight(null);
-    width = image.getWidth(null);
+    shoots = new ArrayList<Shooting>();
+    try {
+      Girl[0] = ImageIO.read(new File("players\\Girl-1.png"));
+      Girl[1] = ImageIO.read(new File("players\\Girl-2.png"));
+      Girl[2] = ImageIO.read(new File("players\\Girl-3.png"));
+      height = Girl[0].getHeight(this);
+      width = Girl[0].getWidth(this);
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(new JFrame(), "The image cannot be loaded!\n" + e, "Error",
+          JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+    }
   }
 
   public void update() {
     x += dx;
     y += dy;
+  }
+
+  public void shoot() {
+    this.shoots.add(new Shooting(x + (width / 2), y + (height / 2)));
   }
 
   public void keyPressed(KeyEvent key) {
@@ -45,6 +66,11 @@ public class Player {
 
     if (code == KeyEvent.VK_RIGHT) {
       dx = 3;
+    }
+
+    if (code == KeyEvent.VK_Z) {
+      moveStatus = 2;
+      shoot();
     }
 
   }
@@ -68,6 +94,10 @@ public class Player {
       dx = 0;
     }
 
+    if (code == KeyEvent.VK_Z) {
+      moveStatus = 0;
+    }
+
   }
 
   public int getX() {
@@ -78,8 +108,12 @@ public class Player {
     return y;
   }
 
-  public Image getImage() {
-    return image;
+  public List<Shooting> getShoot() {
+    return shoots;
+  }
+
+  public Image getImage(Graphics g) {
+    return Girl[moveStatus];
   }
 
 }
