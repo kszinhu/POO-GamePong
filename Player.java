@@ -23,9 +23,6 @@ public class Player extends JPanel {
   int moveStatus = 0;
 
   public Player() {
-    this.x = 100;
-    this.y = 448;
-
     shoots = new ArrayList<Shooting>();
     try {
       Girl[0] = ImageIO.read(new File("players\\Girl-1.png"));
@@ -38,6 +35,8 @@ public class Player extends JPanel {
           JOptionPane.ERROR_MESSAGE);
       System.exit(1);
     }
+    this.x = 5;
+    this.y = 512 - height / 2;
   }
 
   public void update() {
@@ -46,7 +45,7 @@ public class Player extends JPanel {
   }
 
   public void shoot() {
-    this.shoots.add(new Shooting(x + (width / 2), y + (height / 2)));
+    this.shoots.add(new Shooting(x + (width / 2), y + (height / 2) - 3));
   }
 
   public void keyPressed(KeyEvent key) {

@@ -12,6 +12,7 @@ public class World extends JPanel implements ActionListener {
 
   private Image wallpaper;
   private Player player;
+  private Rene rene;
   private Timer timer;
 
   public World() {
@@ -22,6 +23,7 @@ public class World extends JPanel implements ActionListener {
     wallpaper = referrence.getImage();
 
     player = new Player();
+    rene = new Rene();
 
     addKeyListener(new keyboardAdapter());
 
@@ -33,6 +35,7 @@ public class World extends JPanel implements ActionListener {
     Graphics2D graph = (Graphics2D) g;
     graph.drawImage(wallpaper, 0, 0, null);
     graph.drawImage(player.getImage(g), player.getX(), player.getY(), this);
+    graph.drawImage(rene.getImage(g), rene.getX(), rene.getY(), this);
     List<Shooting> shoots = player.getShoot();
     for (int i = 0; i < shoots.size(); i++) {
       Shooting fire = shoots.get(i);
