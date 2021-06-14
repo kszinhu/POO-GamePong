@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.awt.Rectangle;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
@@ -41,6 +42,18 @@ public class Rene extends JPanel {
     this.y -= SPEED;
   }
 
+  public boolean isVisible() {
+    return isVisible;
+  }
+
+  public void setVisible(boolean ifVisible) {
+    this.isVisible = ifVisible;
+  }
+
+  public Rectangle getBounds() {
+    return new Rectangle(x, y, width, height);
+  }
+
   public int getX() {
     return x;
   }
@@ -51,10 +64,6 @@ public class Rene extends JPanel {
 
   public Image getImage(Graphics g) {
     return Rene[moveStatus];
-  }
-
-  public void setVisible(boolean isView) {
-    this.isVisible = isView;
   }
 
   public static void setSpeed(int Speed) {

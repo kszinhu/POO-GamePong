@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Player extends JPanel {
   // private Image Boy[] = new Image[3];
   private List<Shooting> shoots;
   private int height, width;
+  private boolean isVisible;
 
   int moveStatus = 0;
 
@@ -37,6 +39,7 @@ public class Player extends JPanel {
     }
     this.x = 5;
     this.y = 512 - height / 2;
+    isVisible = true;
   }
 
   public void update() {
@@ -46,6 +49,18 @@ public class Player extends JPanel {
 
   public void shoot() {
     this.shoots.add(new Shooting(x + (width / 2), y + (height / 2) - 3));
+  }
+
+  public Rectangle getBounds() {
+    return new Rectangle(x, y, width, height);
+  }
+
+  public boolean isVisible() {
+    return isVisible;
+  }
+
+  public void setVisible(boolean ifVisible) {
+    this.isVisible = ifVisible;
   }
 
   public void keyPressed(KeyEvent key) {
