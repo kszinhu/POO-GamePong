@@ -15,7 +15,7 @@ public class Shooting {
   private boolean isVisible;
 
   private static final int WIDTH = 1024;
-  private static int speed = 2;
+  private static int speed = 10;
 
   public Shooting(int x, int y) {
 
