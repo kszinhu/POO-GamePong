@@ -11,7 +11,7 @@ public class Enemy extends JPanel {
   private boolean isVisible;
   private Image Enemy[] = new Image[2];
 
-  private static int SPEED = 10;
+  private static int SPEED = 5;
   int moveStatus = 0;
 
   public Enemy(int x, int y) {
@@ -53,6 +53,10 @@ public class Enemy extends JPanel {
 
   public Image getImage() {
     return Enemy[moveStatus];
+  }
+
+  public void setImage(Image[] g) {
+    this.Enemy = g;
   }
 
   public static void setSpeed(int Speed) {
