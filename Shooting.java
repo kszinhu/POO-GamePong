@@ -1,15 +1,11 @@
 import java.awt.Image;
-import java.io.File;
 import java.awt.Rectangle;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class Shooting {
 
-  private Image image;
+  private Image imageShoot;
   private int x, y;
   private int height, width;
   private boolean isVisible;
@@ -26,16 +22,10 @@ public class Shooting {
   }
 
   public void load() {
-    try {
-      image = ImageIO.read(new File("players\\shootGirl.png"));
-    } catch (IOException e) {
-      JOptionPane.showMessageDialog(new JFrame(), "The image cannot be loaded!\n" + e, "Error",
-          JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
-    }
-    height = image.getHeight(null);
-    width = image.getWidth(null);
+    imageShoot = new ImageIcon("players\\shootGirl.png").getImage();
 
+    height = imageShoot.getHeight(null);
+    width = imageShoot.getWidth(null);
   }
 
   public void update() {
@@ -73,7 +63,7 @@ public class Shooting {
   }
 
   public Image getImage() {
-    return image;
+    return imageShoot;
   }
 
 }
