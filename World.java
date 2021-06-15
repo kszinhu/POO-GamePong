@@ -45,7 +45,7 @@ public class World extends JPanel implements ActionListener {
 
     for (int i = 0; i < coordinate.length; i++) {
       int x = (int) (Math.random() * 8000 + 1024);
-      int y = (int) (Math.random() * 700 + 30);
+      int y = (int) (Math.random() * 650 + 30);
       enemy.add(new Enemy(x, y));
     }
   }

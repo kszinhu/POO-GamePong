@@ -9,7 +9,7 @@ public class Enemy extends JPanel {
   private int x, y;
   private int height, width;
   private boolean isVisible;
-  private Image Enemy[] = new Image[2];
+  private Image Enemy;
 
   private static int SPEED = 5;
   int moveStatus = 0;
@@ -21,10 +21,9 @@ public class Enemy extends JPanel {
   }
 
   public void load() {
-    Enemy[0] = new ImageIcon("enemies\\Rene-none.png").getImage();
-    Enemy[1] = new ImageIcon("enemies\\Rene-month.png").getImage();
-    this.height = Enemy[0].getHeight(null);
-    this.width = Enemy[0].getWidth(null);
+    Enemy = new ImageIcon("enemies\\Duke.png").getImage();
+    this.height = Enemy.getHeight(null);
+    this.width = Enemy.getWidth(null);
   }
 
   public void update() {
@@ -52,11 +51,11 @@ public class Enemy extends JPanel {
   }
 
   public Image getImage() {
-    return Enemy[moveStatus];
+    return Enemy;
   }
 
-  public void setImage(Image[] g) {
-    this.Enemy = g;
+  public void setImage(Image photo) {
+    this.Enemy = photo;
   }
 
   public static void setSpeed(int Speed) {
