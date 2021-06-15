@@ -91,12 +91,12 @@ public class World extends JPanel implements ActionListener {
       }
     }
 
-    for (int index = 0; index < enemy.size(); index++) {
-      Enemy duke = enemy.get(index);
+    for (int i = 0; i < enemy.size(); i++) {
+      Enemy duke = enemy.get(i);
       if (duke.isVisible()) {
         duke.update();
       } else {
-        duke.remove(index);
+        enemy.remove(i);
       }
     }
     colisions();
@@ -109,10 +109,10 @@ public class World extends JPanel implements ActionListener {
     Rectangle shootBounds;
     Rectangle dukeBounds;
 
-    // if (playerBounds.intersects(reneBounds)) {
-    // player.setVisible(false);
-    // inGame = false;
-    // }
+    if (playerBounds.intersects(reneBounds)) {
+      player.setVisible(false);
+      inGame = false;
+    }
 
     for (int i = 0; i < enemy.size(); i++) {
       Enemy duke = enemy.get(i);
