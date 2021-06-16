@@ -10,7 +10,7 @@ public class Game extends JFrame {
   public Game() {
     add(new World());
     setTitle("Space inPOO");
-    setSize(1024, 768);
+    setSize(1024, 1024);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     this.setResizable(false);

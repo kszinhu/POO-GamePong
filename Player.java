@@ -9,17 +9,21 @@ import javax.swing.JPanel;
 
 public class Player extends JPanel {
 
+  private int idPlayer = 1;
   private int x, y;
   private int dx, dy;
   private Image Girl[] = new Image[3];
   {
     Girl[0] = new ImageIcon("players\\Girl-1.png").getImage();
     Girl[1] = new ImageIcon("players\\Girl-2.png").getImage();
-    Girl[2] = new ImageIcon("players\\Girl-3.png").getImage();
     height = Girl[0].getHeight(this);
     width = Girl[0].getWidth(this);
   }
-  // private Image Boy[] = new Image[3];
+  private Image Boy[] = new Image[3];
+  {
+    Boy[0] = new ImageIcon("players\\Boy-1.png").getImage();
+    Boy[1] = new ImageIcon("players\\Boy-2.png").getImage();
+  }
   private List<Shooting> shoots;
   private int height, width;
   private boolean isVisible;
@@ -75,7 +79,7 @@ public class Player extends JPanel {
     }
 
     if (code == KeyEvent.VK_Z) {
-      moveStatus = 2;
+      moveStatus = 1;
       shoot();
     }
 
@@ -119,7 +123,11 @@ public class Player extends JPanel {
   }
 
   public Image getImage() {
-    return Girl[moveStatus];
+    return Boy[moveStatus];
+  }
+
+  public int getId() {
+    return idPlayer;
   }
 
 }

@@ -3,9 +3,20 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Shooting {
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-  private Image imageShoot;
+public class Shooting {
+  private Image shootImages[] = new Image[2];
+  private AudioInputStream audioInputStream;
+  {
+    try {
+      audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("players\\laser.wav"));
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
   private int x, y;
   private int height, width;
   private boolean isVisible;
@@ -14,24 +25,34 @@ public class Shooting {
   private static int speed = 10;
 
   public Shooting(int x, int y) {
-
     this.x = x;
     this.y = y;
+    playSound();
     isVisible = true;
-
   }
 
   public void load() {
-    imageShoot = new ImageIcon("players\\shootGirl.png").getImage();
+    shootImages[0] = new ImageIcon("players\\shootGirl.png").getImage();
+    shootImages[1] = new ImageIcon("players\\shootBoy.png").getImage();
 
-    height = imageShoot.getHeight(null);
-    width = imageShoot.getWidth(null);
+    height = shootImages[0].getHeight(null);
+    width = shootImages[0].getWidth(null);
   }
 
   public void update() {
     this.x += speed;
     if (this.x > WIDTH)
       isVisible = false;
+  }
+
+  public synchronized void playSound() {
+    try {
+      Clip clip = AudioSystem.getClip();
+      clip.open(audioInputStream);
+      clip.start();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
 
   public Rectangle getBounds() {
@@ -62,8 +83,8 @@ public class Shooting {
     return y;
   }
 
-  public Image getImage() {
-    return imageShoot;
+  public Image getImage(int shootStatus) {
+    return shootImages[shootStatus];
   }
 
 }

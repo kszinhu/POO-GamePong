@@ -40,12 +40,12 @@ public class World extends JPanel implements ActionListener {
   }
 
   public void initEnemies() {
-    int coordinate[] = new int[20];
+    int coordinate[] = new int[80];
     enemy = new ArrayList<Enemy>();
 
     for (int i = 0; i < coordinate.length; i++) {
       int x = (int) (Math.random() * 8000 + 1024);
-      int y = (int) (Math.random() * 650 + 30);
+      int y = (int) (Math.random() * 976 + 48);
       enemy.add(new Enemy(x, y));
     }
   }
@@ -62,7 +62,7 @@ public class World extends JPanel implements ActionListener {
       for (int i = 0; i < shoots.size(); i++) {
         Shooting fire = shoots.get(i);
         fire.load();
-        graph.drawImage(fire.getImage(), fire.getX(), fire.getY(), this);
+        graph.drawImage(fire.getImage(player.getId()), fire.getX(), fire.getY(), this);
       }
 
       for (int i = 0; i < enemy.size(); i++) {
@@ -72,7 +72,9 @@ public class World extends JPanel implements ActionListener {
       }
 
     } else {
-      System.out.println("END GAME"); // END GAME
+      // END GAME
+      System.out.println("END GAME");
+      System.exit(0);
     }
     g.dispose();
   }
