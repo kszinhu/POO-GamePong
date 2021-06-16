@@ -19,6 +19,7 @@ public class World extends JPanel implements ActionListener {
   private Rene rene;
   private List<Enemy> enemy;
   private Timer timer;
+  private Sound soundManager = new Sound();
   private boolean inGame;
 
   private Image background = new ImageIcon("background.png").getImage();
@@ -99,6 +100,7 @@ public class World extends JPanel implements ActionListener {
         duke.update();
       } else {
         enemy.remove(i);
+        soundManager.playSound("coins.wav");
       }
     }
     colisions();

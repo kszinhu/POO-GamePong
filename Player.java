@@ -82,7 +82,6 @@ public class Player extends JPanel {
       moveStatus = 1;
       shoot();
     }
-
   }
 
   public void keyRealeased(KeyEvent key) {
@@ -107,7 +106,6 @@ public class Player extends JPanel {
     if (code == KeyEvent.VK_Z) {
       moveStatus = 0;
     }
-
   }
 
   public int getX() {

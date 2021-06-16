@@ -28,6 +28,7 @@ public class Shooting {
     this.x = x;
     this.y = y;
     playSound();
+    // soundManager.playSound(0);
     isVisible = true;
   }
 
