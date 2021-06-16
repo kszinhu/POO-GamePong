@@ -3,20 +3,9 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 public class Shooting {
   private Image shootImages[] = new Image[2];
-  private AudioInputStream audioInputStream;
-  {
-    try {
-      audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("players\\laser.wav"));
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
+  private Sound soundManager = new Sound();
   private int x, y;
   private int height, width;
   private boolean isVisible;
@@ -27,8 +16,7 @@ public class Shooting {
   public Shooting(int x, int y) {
     this.x = x;
     this.y = y;
-    playSound();
-    // soundManager.playSound(0);
+    soundManager.playSound(2);
     isVisible = true;
   }
 
@@ -44,16 +32,6 @@ public class Shooting {
     this.x += speed;
     if (this.x > WIDTH)
       isVisible = false;
-  }
-
-  public synchronized void playSound() {
-    try {
-      Clip clip = AudioSystem.getClip();
-      clip.open(audioInputStream);
-      clip.start();
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
   }
 
   public Rectangle getBounds() {
