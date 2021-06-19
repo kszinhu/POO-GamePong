@@ -1,42 +1,38 @@
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.awt.Rectangle;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Player extends JPanel {
 
+  private int idPlayer = 1;
   private int x, y;
   private int dx, dy;
-  private Image Girl[] = new Image[3];
-  // private Image Boy[] = new Image[3];
-  private List<Shooting> shoots;
   private int height, width;
   private boolean isVisible;
-
-  int moveStatus = 0;
+  private List<Shooting> shoots;
+  private int moveStatus = 0;
+  private int score = 0;
+  private Image Girl[] = new Image[3];
+  {
+    Girl[0] = new ImageIcon("players\\Girl-1.png").getImage();
+    Girl[1] = new ImageIcon("players\\Girl-2.png").getImage();
+    height = Girl[0].getHeight(this);
+    width = Girl[0].getWidth(this);
+  }
+  private Image Boy[] = new Image[3];
+  {
+    Boy[0] = new ImageIcon("players\\Boy-1.png").getImage();
+    Boy[1] = new ImageIcon("players\\Boy-2.png").getImage();
+  }
 
   public Player() {
     shoots = new ArrayList<Shooting>();
-    try {
-      Girl[0] = ImageIO.read(new File("players\\Girl-1.png"));
-      Girl[1] = ImageIO.read(new File("players\\Girl-2.png"));
-      Girl[2] = ImageIO.read(new File("players\\Girl-3.png"));
-      height = Girl[0].getHeight(this);
-      width = Girl[0].getWidth(this);
-    } catch (IOException e) {
-      JOptionPane.showMessageDialog(new JFrame(), "The image cannot be loaded!\n" + e, "Error",
-          JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
-    }
+
     this.x = 5;
     this.y = 512 - height / 2;
     isVisible = true;
@@ -83,10 +79,9 @@ public class Player extends JPanel {
     }
 
     if (code == KeyEvent.VK_Z) {
-      moveStatus = 2;
+      moveStatus = 1;
       shoot();
     }
-
   }
 
   public void keyRealeased(KeyEvent key) {
@@ -111,7 +106,6 @@ public class Player extends JPanel {
     if (code == KeyEvent.VK_Z) {
       moveStatus = 0;
     }
-
   }
 
   public int getX() {
@@ -126,8 +120,19 @@ public class Player extends JPanel {
     return shoots;
   }
 
-  public Image getImage(Graphics g) {
-    return Girl[moveStatus];
+  public Image getImage() {
+    return Boy[moveStatus];
   }
 
+  public int getId() {
+    return idPlayer;
+  }
+
+  public int getScore() {
+    return this.score;
+  }
+
+  public void incScore() {
+    this.score += 100;
+  }
 }
