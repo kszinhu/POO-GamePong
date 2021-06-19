@@ -1,15 +1,11 @@
 import java.awt.Image;
-import java.io.File;
 import java.awt.Rectangle;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class Shooting {
-
-  private Image image;
+  private Image shootImages[] = new Image[2];
+  private Sound soundManager = new Sound();
   private int x, y;
   private int height, width;
   private boolean isVisible;
@@ -18,24 +14,18 @@ public class Shooting {
   private static int speed = 10;
 
   public Shooting(int x, int y) {
-
     this.x = x;
     this.y = y;
+    soundManager.playSound(2);
     isVisible = true;
-
   }
 
   public void load() {
-    try {
-      image = ImageIO.read(new File("players\\shootGirl.png"));
-    } catch (IOException e) {
-      JOptionPane.showMessageDialog(new JFrame(), "The image cannot be loaded!\n" + e, "Error",
-          JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
-    }
-    height = image.getHeight(null);
-    width = image.getWidth(null);
+    shootImages[0] = new ImageIcon("players\\shootGirl.png").getImage();
+    shootImages[1] = new ImageIcon("players\\shootBoy.png").getImage();
 
+    height = shootImages[0].getHeight(null);
+    width = shootImages[0].getWidth(null);
   }
 
   public void update() {
@@ -72,8 +62,8 @@ public class Shooting {
     return y;
   }
 
-  public Image getImage() {
-    return image;
+  public Image getImage(int shootStatus) {
+    return shootImages[shootStatus];
   }
 
 }

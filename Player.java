@@ -12,11 +12,9 @@ public class Player extends JPanel {
   private int idPlayer = 1;
   private int x, y;
   private int dx, dy;
-  private int height, width;
-  private boolean isVisible;
-  private List<Shooting> shoots;
   private int moveStatus = 0;
   private int score = 0;
+  private List<Shooting> shoots;
   private Image Girl[] = new Image[3];
   {
     Girl[0] = new ImageIcon("players\\Girl-1.png").getImage();
