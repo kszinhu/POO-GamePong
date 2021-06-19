@@ -14,6 +14,8 @@ public class Player extends JPanel {
   private int dx, dy;
   private int moveStatus = 0;
   private int score = 0;
+  private int width, height;
+  private boolean isVisible;
   private List<Shooting> shoots;
   private Image Girl[] = new Image[3];
   {
