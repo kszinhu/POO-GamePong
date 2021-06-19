@@ -12,6 +12,9 @@ public class Player extends JPanel {
   private int idPlayer = 1;
   private int x, y;
   private int dx, dy;
+  private int moveStatus = 0;
+  private int score = 0;
+  private List<Shooting> shoots;
   private Image Girl[] = new Image[3];
   {
     Girl[0] = new ImageIcon("players\\Girl-1.png").getImage();
@@ -24,11 +27,6 @@ public class Player extends JPanel {
     Boy[0] = new ImageIcon("players\\Boy-1.png").getImage();
     Boy[1] = new ImageIcon("players\\Boy-2.png").getImage();
   }
-  private List<Shooting> shoots;
-  private int height, width;
-  private boolean isVisible;
-
-  int moveStatus = 0;
 
   public Player() {
     shoots = new ArrayList<Shooting>();
@@ -128,4 +126,11 @@ public class Player extends JPanel {
     return idPlayer;
   }
 
+  public int getScore() {
+    return this.score;
+  }
+
+  public void incScore() {
+    this.score += 100;
+  }
 }
