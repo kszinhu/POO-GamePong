@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -52,10 +54,17 @@ public class World extends JPanel implements ActionListener {
 
   public void paint(Graphics g) {
     Graphics2D graph = (Graphics2D) g;
+    String points = Integer.toString(player.getScore());
+    String text = "Pontuação";
     if (inGame) {
       graph.drawImage(background, 0, 0, null);
       graph.drawImage(player.getImage(), player.getX(), player.getY(), this);
       graph.drawImage(rene.getImage(), rene.getX(), rene.getY(), this);
+      graph.setColor(new Color(255, 255, 255));
+      graph.setFont(new Font(points, 0, 24));
+      graph.setFont(new Font(text, 0, 32));
+      graph.drawString(text, 5, 29);
+      graph.drawString(points, 20, 66);
 
       List<Shooting> shoots = player.getShoot();
 
@@ -100,6 +109,7 @@ public class World extends JPanel implements ActionListener {
       } else {
         enemy.remove(i);
         (new Sound()).playSound(1);
+        player.incScore();
       }
     }
     colisions();
