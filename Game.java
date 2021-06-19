@@ -14,7 +14,7 @@ public class Game extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     this.setResizable(false);
-    setIconImage(new ImageIcon("icon.png").getImage());
+    setIconImage(new ImageIcon("res\\images\\icon.png").getImage());
 
     setVisible(true);
   }

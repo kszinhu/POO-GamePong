@@ -10,8 +10,8 @@ public class Sound {
   private AudioInputStream audioInputStream[] = new AudioInputStream[3];
   {
     try {
-      audioInputStream[1] = AudioSystem.getAudioInputStream(this.getClass().getResource("coins.wav"));
-      audioInputStream[2] = AudioSystem.getAudioInputStream(this.getClass().getResource("players\\laser.wav"));
+      audioInputStream[1] = AudioSystem.getAudioInputStream(this.getClass().getResource("res\\sounds\\coins.wav"));
+      audioInputStream[2] = AudioSystem.getAudioInputStream(this.getClass().getResource("res\\sounds\\laser.wav"));
     } catch (UnsupportedAudioFileException e) {
       System.out.println("Arquivo não suportado");
       e.printStackTrace();

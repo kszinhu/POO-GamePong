@@ -23,7 +23,7 @@ public class World extends JPanel implements ActionListener {
   private Timer timer;
   private boolean inGame;
 
-  private Image background = new ImageIcon("background.png").getImage();
+  private Image background = new ImageIcon("res\\images\\background.png").getImage();
 
   public World() {
     setFocusable(true);
